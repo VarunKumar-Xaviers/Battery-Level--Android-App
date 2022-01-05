@@ -1,0 +1,4 @@
+<resources>
+    <string name="app_name">Batery Receiver</string>
+    <string name="BateryLevel">Current Batery Level</string>
+</resources>
