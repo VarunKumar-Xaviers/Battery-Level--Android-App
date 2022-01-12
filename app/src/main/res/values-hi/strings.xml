@@ -1,3 +1,8 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
+    <string name="BateryLevel">वर्तमान बैटरी स्तर</string>
+    <string name="bateryhighttext">बैटरी का स्तर ऊंचा है</string>
+    <string name="mediumbaterylevel">बैटरी स्तर मध्यम है</string>
+    <string name="lowbaterylevel">फोन जल्द ही मर जाएगा</string>
+    <string name="criticalbaterylevel">कृपया अपना चार्जर कनेक्ट करें</string>
 </resources>

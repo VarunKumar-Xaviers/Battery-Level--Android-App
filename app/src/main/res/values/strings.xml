@@ -1,4 +1,8 @@
 <resources>
-    <string name="app_name">Batery Receiver</string>
-    <string name="BateryLevel">Current Batery Level</string>
+    <string name="BateryLevel">Current battery Level</string>
+    <string name="bateryhighttext">Battery level is hight</string>
+    <string name="mediumbaterylevel">Battery Level is moderate</string>
+    <string name="lowbaterylevel">Phone will die soon</string>
+    <string name="criticalbaterylevel">Please Connect your charger</string>
+    <string name="app_name" translatable="false">Battery %</string>
 </resources>

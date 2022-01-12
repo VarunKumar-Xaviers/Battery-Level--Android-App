@@ -1,18 +1,19 @@
 package com.example.bateryreceiver;
 
-import androidx.appcompat.app.AppCompatActivity;
-import androidx.constraintlayout.widget.ConstraintLayout;
+import static com.example.bateryreceiver.R.color;
+import static com.example.bateryreceiver.R.id;
+import static com.example.bateryreceiver.R.layout;
 
 import android.content.BroadcastReceiver;
 import android.content.Context;
 import android.content.Intent;
 import android.content.IntentFilter;
-import android.graphics.Color;
 import android.os.Bundle;
-import android.widget.LinearLayout;
 import android.widget.ProgressBar;
 import android.widget.TextView;
-import android.widget.Toast;
+
+import androidx.appcompat.app.AppCompatActivity;
+import androidx.constraintlayout.widget.ConstraintLayout;
 
 public class MainActivity extends AppCompatActivity {
     //Create Broadcast Receiver Object along with class definition
@@ -21,40 +22,37 @@ public class MainActivity extends AppCompatActivity {
         @Override
         //When Event is published, onReceive method is called
         public void onReceive(Context c, Intent i) {
-            ConstraintLayout rl = findViewById(R.id.layout);
+            ConstraintLayout rl = findViewById(id.layout);
 
             //Get Battery %
             int level = i.getIntExtra("level", 0);
             //Find the progressbar creating in main.xml
-            ProgressBar pb = findViewById(R.id.progressBar);
+            ProgressBar pb = findViewById(id.progressBar);
             //Set progress level with battery % value
             pb.setProgress(level);
             //Find textview control created in main.xml
-            TextView tv = findViewById(R.id.textView);
+            TextView tv = findViewById(id.textView);
 
             //Set TextView with text
 
-            tv.setText("Battery Level is : " + level + "%");
+            tv.setText("Battery Level  \n " + level + "%");
             if (level > 90 && level <= 100) {
-                rl.setBackgroundColor(Color.GREEN);
-                Toast.makeText(getApplicationContext(), "sufficient battery", Toast.LENGTH_LONG).show();
+                rl.setBackgroundResource(R.color.Green);
             } else if (level > 50 && level <= 90) {
-                rl.setBackgroundColor(android.R.color.holo_orange_dark);
-                Toast.makeText(getApplicationContext(), "BATTERY WILL DIE SOON", Toast.LENGTH_LONG).show();
+                rl.setBackgroundResource(color.Blue);
             }else if (level > 15 && level <= 50) {
-                rl.setBackgroundColor(Color.YELLOW);
-                Toast.makeText(getApplicationContext(), "BATTERY WILL DIE SOON", Toast.LENGTH_LONG).show();
+                rl.setBackgroundResource(color.Yellow);
             }
             else {
-                rl.setBackgroundColor(Color.RED);
-                Toast.makeText(getApplicationContext(), "PHONE will die soon!!!!", Toast.LENGTH_LONG).show();
+                rl.setBackgroundResource(color.Red);
             }
+
         }
     };
 
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_main);
+        setContentView(layout.activity_main);
         //Register the receiver which triggers event
         //when battery charge is changed
         registerReceiver(mBatInfoReceiver, new IntentFilter(
