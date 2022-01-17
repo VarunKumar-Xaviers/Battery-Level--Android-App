@@ -6,4 +6,5 @@ An Android App to view the Battery % on the Phone
 - Adapts for Landscape and Potrait orientations
 - Added Text to Speech Support
 ## Languages Suported
-English Hindi
+- English 
+- Hindi
