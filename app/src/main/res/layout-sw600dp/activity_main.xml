@@ -9,28 +9,43 @@
 
     <TextView
         android:id="@+id/textView"
-        android:layout_width="250dp"
-        android:layout_height="84dp"
-        android:layout_marginTop="48dp"
-        android:text="@string/BateryLevel"
+        android:layout_width="581dp"
+        android:layout_height="108dp"
         android:textAlignment="center"
         android:textSize="14sp"
         android:textStyle="bold"
         app:autoSizeMaxTextSize="100dp"
         app:autoSizeMinTextSize="12sp"
         app:autoSizeTextType="uniform"
+        app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.305" />
 
     <ProgressBar
         android:id="@+id/progressBar"
         style="?android:attr/progressBarStyleHorizontal"
         android:layout_width="match_parent"
-        android:layout_height="53dp"
-        android:layout_marginStart="4dp"
-        android:layout_marginTop="56dp"
+        android:layout_height="0dp"
+        android:layout_marginBottom="529dp"
         android:visibility="visible"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/speak"
+        app:layout_constraintVertical_bias="0.0" />
+
+    <Button
+        android:id="@+id/speak"
+        android:layout_width="345dp"
+        android:layout_height="54dp"
+        android:layout_marginTop="140dp"
+        android:enabled="false"
+        android:text="@string/Speak"
+        app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/textView" />
+
 </androidx.constraintlayout.widget.ConstraintLayout>

@@ -9,13 +9,22 @@ import android.content.Context;
 import android.content.Intent;
 import android.content.IntentFilter;
 import android.os.Bundle;
+import android.speech.tts.TextToSpeech;
+import android.util.Log;
+import android.view.View;
+import android.widget.Button;
 import android.widget.ProgressBar;
 import android.widget.TextView;
 
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.constraintlayout.widget.ConstraintLayout;
 
-public class MainActivity extends AppCompatActivity {
+import java.util.Locale;
+
+public class MainActivity extends AppCompatActivity{
+    String Readtext;
+    TextToSpeech mTTS;
+    Button speak;
     //Create Broadcast Receiver Object along with class definition
     private final BroadcastReceiver mBatInfoReceiver = new BroadcastReceiver() {
 
@@ -46,7 +55,8 @@ public class MainActivity extends AppCompatActivity {
             else {
                 rl.setBackgroundResource(color.Red);
             }
-
+            //Get batery % value
+            Readtext=tv.getText().toString();
         }
     };
 
@@ -58,5 +68,57 @@ public class MainActivity extends AppCompatActivity {
         registerReceiver(mBatInfoReceiver, new IntentFilter(
                 Intent.ACTION_BATTERY_CHANGED));
 
+        speak = findViewById(id.speak);
+speak.setOnClickListener(new View.OnClickListener() {
+    @Override
+    public void onClick(View v) {
+        mTTS.setSpeechRate(0.90F);
+        mTTS.speak(Readtext, TextToSpeech.QUEUE_FLUSH, null);
+
+    }
+});
+
+            mTTS = new TextToSpeech(this, new TextToSpeech.OnInitListener() {
+            @Override
+            public void onInit(int status) {
+                if (status == TextToSpeech.SUCCESS) {
+                    int result = mTTS.setLanguage(Locale.ENGLISH);
+                    if (result == TextToSpeech.LANG_MISSING_DATA
+                            || result == TextToSpeech.LANG_NOT_SUPPORTED) {
+                        Log.e("TTS", "Language not supported");
+                    } else {
+                        speak.setEnabled(true);
+                    }
+                } else {
+                    Log.e("TTS", "Initialization failed");
+                }
+            }
+        });
+
+    }
+
+
+
+    public void speak(View view) {
+        mTTS.speak(Readtext, TextToSpeech.QUEUE_FLUSH, null);
+    }
+
+    @Override
+    protected void onDestroy() {
+        super.onDestroy();
+        mTTS.stop();
+        mTTS.shutdown();
+    }
+
+    @Override
+    protected void onPause() {
+        super.onPause();
+        mTTS.stop();
+    }
+
+    @Override
+    protected void onRestart() {
+        super.onRestart();
+        mTTS.speak(Readtext, TextToSpeech.QUEUE_FLUSH, null);
     }
 }

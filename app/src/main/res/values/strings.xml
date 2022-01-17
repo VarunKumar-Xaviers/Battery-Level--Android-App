@@ -1,8 +1,9 @@
 <resources>
-    <string name="BateryLevel">Current battery Level</string>
-    <string name="bateryhighttext">Battery level is hight</string>
-    <string name="mediumbaterylevel">Battery Level is moderate</string>
-    <string name="lowbaterylevel">Phone will die soon</string>
-    <string name="criticalbaterylevel">Please Connect your charger</string>
+<!--    App Name-->
     <string name="app_name" translatable="false">Battery %</string>
+<!--    Custom strings-->
+    <string name="batterylevel">Battery Level  </string>
+    <string name="batteryLevelpotrait">Battery Level</string>
+    <string name="notcharging">Not Charging</string>
+    <string name="Speak">Hear Battery Level</string>
 </resources>
