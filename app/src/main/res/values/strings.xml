@@ -1,4 +1,4 @@
 <resources>
     <string name="app_name" translatable="false">Battery %</string>
-    <string name="Speak">Hear Battery Level</string>
+    <string name="Speak">Say It!</string>
 </resources>

@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
     <string name="app_name">Battery %</string>
-    <string name="Speak">बैटरी स्तर सुनें</string>
+    <string name="Speak">यह कहना!</string>
 </resources>
