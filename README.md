@@ -15,4 +15,7 @@ This app aims to make it easier to view the phone/table's battery % for people w
 - English 
 - Hindi
 ## Screenshots
-<img src="images/Potrait Light.jpg" alt="Potrait"/>
+<img src="images/Potrait Light.jpg" alt="Portrait Light"/>
+<img src="images/Potrait Dark.jpg" alt="Portrait Dark"/>
+<img src="images/Landscape Light.jpg" alt="Landscape Light"/>
+<img src="images/Landscape Dark.jpg" alt="Landscape Dark"/>
