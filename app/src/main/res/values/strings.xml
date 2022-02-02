@@ -1,4 +1,7 @@
 <resources>
     <string name="app_name" translatable="false">Battery %</string>
     <string name="Speak">Say It!</string>
+
+    <string name="NotCharging">Not Charging</string>
+    <string name="Charging">Charging</string>
 </resources>

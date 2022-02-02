@@ -4,10 +4,13 @@ import android.content.BroadcastReceiver;
 import android.content.Context;
 import android.content.Intent;
 import android.content.IntentFilter;
+import android.os.BatteryManager;
+import android.os.Build;
 import android.os.Bundle;
 import android.speech.tts.TextToSpeech;
 import android.util.Log;
 import android.widget.Button;
+import android.widget.ImageView;
 import android.widget.ProgressBar;
 import android.widget.TextView;
 import android.widget.Toast;
@@ -17,10 +20,14 @@ import androidx.constraintlayout.widget.ConstraintLayout;
 
 import java.util.Locale;
 
-public class MainActivity extends AppCompatActivity {
+public class
+MainActivity extends AppCompatActivity {
     String ReadText;
     TextToSpeech mTTS;
     Button speak;
+
+
+    TextView ChangeStatusText;
     //Create Broadcast Receiver Object along with class definition
     private final BroadcastReceiver mBatInfoReceiver = new BroadcastReceiver() {
 
@@ -59,10 +66,10 @@ public class MainActivity extends AppCompatActivity {
             CheckChargeStatus();
 
             if (i.getAction().equals(Intent.ACTION_POWER_CONNECTED)){
-                Toast.makeText(MainActivity.this, "Phone is Charging", Toast.LENGTH_SHORT).show();
+                ChangeStatusText.setText(R.string.Charging);
             }
             else if (i.getAction().equals(Intent.ACTION_POWER_DISCONNECTED)){
-                Toast.makeText(MainActivity.this, "Phone is not Charging", Toast.LENGTH_SHORT).show();
+                ChangeStatusText.setText(R.string.NotCharging);
             }
 
         }
@@ -82,6 +89,18 @@ public class MainActivity extends AppCompatActivity {
             SpeakBatteryLevel();
         });
 
+        ChangeStatusText=findViewById(R.id.chargestatustext);
+
+        BatteryManager ba=(BatteryManager) getSystemService(BATTERY_SERVICE);
+
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.M) {
+            if (ba.isCharging()){
+                ChangeStatusText.setText(R.string.Charging);
+            }
+            else if (!ba.isCharging()){
+                ChangeStatusText.setText(R.string.NotCharging);
+            }
+        }
 
     }
     @Override
