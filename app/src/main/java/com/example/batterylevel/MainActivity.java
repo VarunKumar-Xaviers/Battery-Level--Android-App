@@ -7,10 +7,10 @@ import android.content.IntentFilter;
 import android.os.Bundle;
 import android.speech.tts.TextToSpeech;
 import android.util.Log;
-import android.view.View;
 import android.widget.Button;
 import android.widget.ProgressBar;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.constraintlayout.widget.ConstraintLayout;
@@ -18,7 +18,7 @@ import androidx.constraintlayout.widget.ConstraintLayout;
 import java.util.Locale;
 
 public class MainActivity extends AppCompatActivity {
-    String Readtext;
+    String ReadText;
     TextToSpeech mTTS;
     Button speak;
     //Create Broadcast Receiver Object along with class definition
@@ -51,8 +51,20 @@ public class MainActivity extends AppCompatActivity {
             else {
                 rl.setBackgroundResource(R.color.Red);
             }
-            //Get batery % value
-            Readtext=tv.getText().toString();
+            //Get battery % value
+            ReadText =tv.getText().toString();
+
+
+//            Check if Charging or not
+            CheckChargeStatus();
+
+            if (i.getAction().equals(Intent.ACTION_POWER_CONNECTED)){
+                Toast.makeText(MainActivity.this, "Phone is Charging", Toast.LENGTH_SHORT).show();
+            }
+            else if (i.getAction().equals(Intent.ACTION_POWER_DISCONNECTED)){
+                Toast.makeText(MainActivity.this, "Phone is not Charging", Toast.LENGTH_SHORT).show();
+            }
+
         }
     };
 
@@ -65,49 +77,73 @@ public class MainActivity extends AppCompatActivity {
                 Intent.ACTION_BATTERY_CHANGED));
 
         speak = findViewById(R.id.speak);
-        speak.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                mTTS.setSpeechRate(0.90F);
-                mTTS.speak(Readtext, TextToSpeech.QUEUE_FLUSH, null);
-
-            }
+        speak.setOnClickListener(v -> {
+            CreateTTS();
+            SpeakBatteryLevel();
         });
 
-        mTTS = new TextToSpeech(this, new TextToSpeech.OnInitListener() {
-            @Override
-            public void onInit(int status) {
-                if (status == TextToSpeech.SUCCESS) {
-                    int result = mTTS.setLanguage(Locale.ENGLISH);
-                    if (result == TextToSpeech.LANG_MISSING_DATA
-                            || result == TextToSpeech.LANG_NOT_SUPPORTED) {
-                        Log.e("TTS", "Language not supported");
-                    } else {
-                        speak.setEnabled(true);
-                    }
-                } else {
-                    Log.e("TTS", "Initialization failed");
-                }
-            }
-        });
 
     }
     @Override
     protected void onDestroy() {
         super.onDestroy();
-        mTTS.stop();
-        mTTS.shutdown();
+        ReleaseTTS();
+    }
+
+    @Override
+    protected void onStart() {
+        super.onStart();
+        CreateTTS();
     }
 
     @Override
     protected void onPause() {
         super.onPause();
         mTTS.stop();
+        unregisterReceiver(mBatInfoReceiver);
     }
 
-    @Override
-    protected void onRestart() {
-        super.onRestart();
-        mTTS.speak(Readtext, TextToSpeech.QUEUE_FLUSH, null);
+    public  void CreateTTS(){
+        mTTS = new TextToSpeech(this, status -> {
+            if (status == TextToSpeech.SUCCESS) {
+                int result = mTTS.setLanguage(Locale.ENGLISH);
+                if (result == TextToSpeech.LANG_MISSING_DATA
+                        || result == TextToSpeech.LANG_NOT_SUPPORTED) {
+                    Log.e("TTS", "Language not supported");
+                } else {
+                    speak.setEnabled(true);
+                }
+            } else {
+                Log.e("TTS", "Initialization failed");
+            }
+        });
+    }
+    public void ReleaseTTS(){
+        mTTS.stop();
+        mTTS.shutdown();
+    }
+
+    public void SpeakBatteryLevel(){
+        mTTS = new TextToSpeech(this, status -> {
+            if (status == TextToSpeech.SUCCESS) {
+                int result = mTTS.setLanguage(Locale.ENGLISH);
+                if (result == TextToSpeech.LANG_MISSING_DATA
+                        || result == TextToSpeech.LANG_NOT_SUPPORTED) {
+                    Log.e("TTS", "Language not supported");
+                } else {
+                    speak.setEnabled(true);
+                }
+            } else {
+                Log.e("TTS", "Initialization failed");
+            }
+        });
+        mTTS.speak(ReadText, TextToSpeech.QUEUE_FLUSH, null,null);
+    }
+
+    public void CheckChargeStatus(){
+        IntentFilter CheckChargeIntentFilter=new IntentFilter();
+        CheckChargeIntentFilter.addAction(Intent.ACTION_POWER_CONNECTED);
+        CheckChargeIntentFilter.addAction(Intent.ACTION_POWER_DISCONNECTED);
+        registerReceiver(mBatInfoReceiver,CheckChargeIntentFilter);
     }
 }
