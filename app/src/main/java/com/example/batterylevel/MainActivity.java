@@ -118,7 +118,6 @@ MainActivity extends AppCompatActivity {
     @Override
     protected void onPause() {
         super.onPause();
-        mTTS.stop();
         unregisterReceiver(mBatInfoReceiver);
     }
 
