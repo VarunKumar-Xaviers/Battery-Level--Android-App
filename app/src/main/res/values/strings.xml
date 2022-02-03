@@ -5,4 +5,5 @@
     <string name="NotCharging">Not Charging</string>
     <string name="Charging">Charging</string>
     <string name="BatteryLevel">\Battery Level  \n \</string>
+    <string name="FullyCharged">Fully Charged</string>
 </resources>

@@ -49,16 +49,23 @@ MainActivity extends AppCompatActivity {
             //Set TextView with text
 
             tv.setText(getString(R.string.BatteryLevel) + level + "%");
-            if (level > 90 && level <= 100) {
+            if (level == 100) {
                 rl.setBackgroundResource(R.color.Green);
+                ChangeStatusText.setText(R.string.FullyCharged);
+            } else if (level > 90 && level <= 100) {
+                rl.setBackgroundResource(R.color.Green);
+                changeBatteryCharging();
             } else if (level > 50 && level <= 90) {
                 rl.setBackgroundResource(R.color.Blue);
-            }else if (level > 15 && level <= 50) {
+                changeBatteryCharging();
+            } else if (level > 15 && level <= 50) {
                 rl.setBackgroundResource(R.color.Yellow);
-            }
-            else {
+                changeBatteryCharging();
+            } else {
                 rl.setBackgroundResource(R.color.Red);
+                changeBatteryCharging();
             }
+
             //Get battery % value
             ReadText = tv.getText().toString() + " Phone is " + ChangeStatusText.getText().toString();
 
@@ -93,16 +100,8 @@ MainActivity extends AppCompatActivity {
 
         ChangeStatusText=findViewById(R.id.chargestatustext);
 
-        BatteryManager ba=(BatteryManager) getSystemService(BATTERY_SERVICE);
+        changeBatteryCharging();
 
-        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.M) {
-            if (ba.isCharging()){
-                ChangeStatusText.setText(R.string.Charging);
-            }
-            else if (!ba.isCharging()){
-                ChangeStatusText.setText(R.string.NotCharging);
-            }
-        }
 
     }
     @Override
@@ -191,5 +190,17 @@ MainActivity extends AppCompatActivity {
             AnnouncePhoneConnected.speak(PhoneConnected, TextToSpeech.QUEUE_FLUSH, null, null);
 
         });
+    }
+
+    public void changeBatteryCharging() {
+        BatteryManager ba = (BatteryManager) getSystemService(BATTERY_SERVICE);
+
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.M) {
+            if (ba.isCharging()) {
+                ChangeStatusText.setText(R.string.Charging);
+            } else if (!ba.isCharging()) {
+                ChangeStatusText.setText(R.string.NotCharging);
+            }
+        }
     }
 }
