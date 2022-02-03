@@ -25,7 +25,8 @@ MainActivity extends AppCompatActivity {
     String ReadText;
     TextToSpeech mTTS;
     Button speak;
-
+    TextToSpeech AnnouncePhoneConnected;
+    String PhoneConnected;
 
     TextView ChangeStatusText;
     //Create Broadcast Receiver Object along with class definition
@@ -47,7 +48,7 @@ MainActivity extends AppCompatActivity {
 
             //Set TextView with text
 
-            tv.setText("Battery Level  \n " + level + "%");
+            tv.setText(getString(R.string.BatteryLevel) + level + "%");
             if (level > 90 && level <= 100) {
                 rl.setBackgroundResource(R.color.Green);
             } else if (level > 50 && level <= 90) {
@@ -68,12 +69,14 @@ MainActivity extends AppCompatActivity {
             if (i.getAction().equals(Intent.ACTION_POWER_CONNECTED)){
                 Vibrate();
                 ChangeStatusText.setText(R.string.Charging);
+                AnnouncePhoneConnected();
             }
             else if (i.getAction().equals(Intent.ACTION_POWER_DISCONNECTED)){
                 Vibrate();
                 ChangeStatusText.setText(R.string.NotCharging);
+                AnnouncePhoneConnected();
             }
-
+            PhoneConnected = "Phone is " + ChangeStatusText.getText().toString();
         }
     };
 
@@ -86,9 +89,7 @@ MainActivity extends AppCompatActivity {
                 Intent.ACTION_BATTERY_CHANGED));
 
         speak = findViewById(R.id.speak);
-        speak.setOnClickListener(v -> {
-            SpeakBatteryLevel();
-        });
+        speak.setOnClickListener(v -> SpeakBatteryLevel());
 
         ChangeStatusText=findViewById(R.id.chargestatustext);
 
@@ -178,5 +179,17 @@ MainActivity extends AppCompatActivity {
     protected void onStop() {
         super.onStop();
         ReleaseTTS();
+    }
+
+    public void AnnouncePhoneConnected() {
+        AnnouncePhoneConnected = new TextToSpeech(this, status -> {
+            if (status == TextToSpeech.SUCCESS) {
+                AnnouncePhoneConnected.setLanguage(Locale.ENGLISH);
+            }
+//                    Speak button click
+            AnnouncePhoneConnected.setSpeechRate(0.97f);
+            AnnouncePhoneConnected.speak(PhoneConnected, TextToSpeech.QUEUE_FLUSH, null, null);
+
+        });
     }
 }

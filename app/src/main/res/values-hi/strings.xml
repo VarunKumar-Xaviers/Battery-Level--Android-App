@@ -5,4 +5,5 @@
 
     <string name="NotCharging">चार्ज नहीं हो रहा</string>
     <string name="Charging">चार्ज</string>
+    <string name="BatteryLevel">\बैटरी का स्तर  \n \</string>
 </resources>
