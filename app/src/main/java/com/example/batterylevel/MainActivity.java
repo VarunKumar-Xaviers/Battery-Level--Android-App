@@ -10,10 +10,8 @@ import android.os.Bundle;
 import android.speech.tts.TextToSpeech;
 import android.util.Log;
 import android.widget.Button;
-import android.widget.ImageView;
 import android.widget.ProgressBar;
 import android.widget.TextView;
-import android.widget.Toast;
 
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.constraintlayout.widget.ConstraintLayout;
@@ -59,10 +57,10 @@ MainActivity extends AppCompatActivity {
                 rl.setBackgroundResource(R.color.Red);
             }
             //Get battery % value
-            ReadText =tv.getText().toString();
+            ReadText = tv.getText().toString() + " Phone is " + ChangeStatusText.getText().toString();
 
 
-//            Check if Charging or not
+//            Check if Charging or not when phone is plugged in or removed
             CheckChargeStatus();
 
             if (i.getAction().equals(Intent.ACTION_POWER_CONNECTED)){
@@ -85,7 +83,6 @@ MainActivity extends AppCompatActivity {
 
         speak = findViewById(R.id.speak);
         speak.setOnClickListener(v -> {
-            CreateTTS();
             SpeakBatteryLevel();
         });
 
@@ -118,6 +115,7 @@ MainActivity extends AppCompatActivity {
     @Override
     protected void onPause() {
         super.onPause();
+        mTTS.stop();
         unregisterReceiver(mBatInfoReceiver);
     }
 
@@ -144,24 +142,25 @@ MainActivity extends AppCompatActivity {
     public void SpeakBatteryLevel(){
         mTTS = new TextToSpeech(this, status -> {
             if (status == TextToSpeech.SUCCESS) {
-                int result = mTTS.setLanguage(Locale.ENGLISH);
-                if (result == TextToSpeech.LANG_MISSING_DATA
-                        || result == TextToSpeech.LANG_NOT_SUPPORTED) {
-                    Log.e("TTS", "Language not supported");
-                } else {
-                    speak.setEnabled(true);
-                }
-            } else {
-                Log.e("TTS", "Initialization failed");
+                mTTS.setLanguage(Locale.ENGLISH);
             }
+//                    Speak button click
+            mTTS.setSpeechRate(0.97f);
+            mTTS.speak(ReadText, TextToSpeech.QUEUE_FLUSH, null, null);
+
         });
-        mTTS.speak(ReadText, TextToSpeech.QUEUE_FLUSH, null,null);
     }
 
-    public void CheckChargeStatus(){
-        IntentFilter CheckChargeIntentFilter=new IntentFilter();
+    public void CheckChargeStatus() {
+        IntentFilter CheckChargeIntentFilter = new IntentFilter();
         CheckChargeIntentFilter.addAction(Intent.ACTION_POWER_CONNECTED);
         CheckChargeIntentFilter.addAction(Intent.ACTION_POWER_DISCONNECTED);
-        registerReceiver(mBatInfoReceiver,CheckChargeIntentFilter);
+        registerReceiver(mBatInfoReceiver, CheckChargeIntentFilter);
+    }
+
+    @Override
+    protected void onStop() {
+        super.onStop();
+        ReleaseTTS();
     }
 }
