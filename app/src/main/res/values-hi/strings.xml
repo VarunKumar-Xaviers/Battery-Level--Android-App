@@ -3,6 +3,6 @@
     <string name="app_name">Battery %</string>
     <string name="Speak">यह कहना!</string>
 
-    <string name="NotCharging">Not Charging</string>
-    <string name="Charging">Charging</string>
+    <string name="NotCharging">चार्ज नहीं हो रहा</string>
+    <string name="Charging">चार्ज</string>
 </resources>
