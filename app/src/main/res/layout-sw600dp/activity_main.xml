@@ -2,17 +2,16 @@
 <androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/layout"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:id="@+id/layout"
     tools:context=".MainActivity">
 
     <TextView
         android:id="@+id/textView"
         android:layout_width="632dp"
         android:layout_height="84dp"
-        android:layout_marginTop="52dp"
-        android:layout_marginEnd="8dp"
+        android:layout_marginTop="96dp"
         android:textAlignment="center"
         android:textSize="16sp"
         android:textStyle="bold"
@@ -20,6 +19,7 @@
         app:autoSizeMinTextSize="12sp"
         app:autoSizeTextType="uniform"
         app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.625"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 
@@ -28,24 +28,38 @@
         style="?android:attr/progressBarStyleHorizontal"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_marginStart="24dp"
-        android:layout_marginTop="192dp"
-        android:layout_marginBottom="58dp"
+        android:layout_marginTop="144dp"
         android:visibility="visible"
-        app:layout_constraintBottom_toTopOf="@+id/speak"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
+        app:layout_constraintTop_toBottomOf="@+id/textView" />
 
     <Button
         android:id="@+id/speak"
-        android:layout_width="268dp"
-        android:layout_height="58dp"
-        android:layout_marginBottom="32dp"
+        android:layout_width="419dp"
+        android:layout_height="95dp"
         android:text="@string/Speak"
+        android:textSize="50sp"
         android:visibility="visible"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.421"
+        app:layout_constraintHorizontal_bias="0.696"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/progressBar" />
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.937" />
+
+    <TextView
+        android:id="@+id/chargestatustext"
+        android:layout_width="654dp"
+        android:layout_height="167dp"
+        android:text="TextView"
+        android:textAlignment="center"
+        android:textSize="34sp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.63"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.649" />
 </androidx.constraintlayout.widget.ConstraintLayout>
