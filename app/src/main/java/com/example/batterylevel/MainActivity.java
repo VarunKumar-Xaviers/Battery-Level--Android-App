@@ -7,6 +7,8 @@ import android.content.IntentFilter;
 import android.os.BatteryManager;
 import android.os.Build;
 import android.os.Bundle;
+import android.os.VibrationEffect;
+import android.os.Vibrator;
 import android.speech.tts.TextToSpeech;
 import android.util.Log;
 import android.widget.Button;
@@ -64,9 +66,11 @@ MainActivity extends AppCompatActivity {
             CheckChargeStatus();
 
             if (i.getAction().equals(Intent.ACTION_POWER_CONNECTED)){
+                Vibrate();
                 ChangeStatusText.setText(R.string.Charging);
             }
             else if (i.getAction().equals(Intent.ACTION_POWER_DISCONNECTED)){
+                Vibrate();
                 ChangeStatusText.setText(R.string.NotCharging);
             }
 
@@ -149,6 +153,18 @@ MainActivity extends AppCompatActivity {
             mTTS.speak(ReadText, TextToSpeech.QUEUE_FLUSH, null, null);
 
         });
+    }
+
+    public void Vibrate() {
+        Vibrator vibrator = (Vibrator) getSystemService(VIBRATOR_SERVICE);
+        //Vibrate on click
+        if (Build.VERSION.SDK_INT >= 26) {
+//    Perform forAPI  26 and above
+            vibrator.vibrate(VibrationEffect.createOneShot(200, VibrationEffect.DEFAULT_AMPLITUDE));
+        } else {
+//    Perform for API 26 and below
+            vibrator.vibrate(200);
+        }
     }
 
     public void CheckChargeStatus() {
