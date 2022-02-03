@@ -54,16 +54,16 @@ MainActivity extends AppCompatActivity {
                 ChangeStatusText.setText(R.string.FullyCharged);
             } else if (level > 90 && level <= 100) {
                 rl.setBackgroundResource(R.color.Green);
-                changeBatteryCharging();
+
             } else if (level > 50 && level <= 90) {
                 rl.setBackgroundResource(R.color.Blue);
-                changeBatteryCharging();
+
             } else if (level > 15 && level <= 50) {
                 rl.setBackgroundResource(R.color.Yellow);
-                changeBatteryCharging();
+
             } else {
                 rl.setBackgroundResource(R.color.Red);
-                changeBatteryCharging();
+
             }
 
             //Get battery % value
@@ -101,8 +101,6 @@ MainActivity extends AppCompatActivity {
         ChangeStatusText=findViewById(R.id.chargestatustext);
 
         changeBatteryCharging();
-
-
     }
     @Override
     protected void onDestroy() {
