@@ -26,4 +26,4 @@ The app ahs been tested with **Talkback** -Android's Screen Reader. The App also
 **Charging Landscape Dark**
 <img src="images/Charging Dark Land.jpeg" alt="Charging Dark Landscape">
 ## Videos
-<video src="images/Not Charging Light.mp4" controls alt="Not Charging Light">
+
