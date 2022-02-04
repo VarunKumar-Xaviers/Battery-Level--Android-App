@@ -14,7 +14,7 @@ This app aims to make it easier to view the phone/table's battery % for people w
 - Supports Dark Mode
 
 # Accessibility
-The app ahs been tested with **Talkback** -Android's Screen Reader. The App also complies with the AAA Web Accessibility Standerds for Digital Content Accessibility.
+The app ahs been tested with **Talkback** -Android's Screen Reader. The App also complies with the **AAA Web Accessibility Standerds** for Digital Content Accessibility.
 ## Languages Supported
 - English 
 - Hindi
