@@ -1,5 +1,5 @@
 # Battery-Level--Android-App
-An Android App to view the Battery % on the Phone made especially for Low vision and Blindness 
+An Android App to view battery Level of Phone for Visually impared people
 
 This is an Open Source Project developed specially for users with **visual Impairments** in mind. The App supports Text to Speech by which the user can hear the batter %  and the status of phone (if**plugged in and charging**  or not)read out loud.
 
