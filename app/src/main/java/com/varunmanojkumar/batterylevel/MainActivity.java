@@ -1,4 +1,4 @@
-package com.example.batterylevel;
+package com.varunmanojkumar.batterylevel;
 
 import android.content.BroadcastReceiver;
 import android.content.Context;
