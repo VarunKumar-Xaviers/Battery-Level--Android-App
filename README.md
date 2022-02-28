@@ -25,3 +25,6 @@ The app has been tested with Talkback -Android's Screen Reader. The App also com
 - Adapts for Landscape and Portrait orientations
 - Supports Dark Mode
 - Accessible with Talk Back and other Screen Readers on Android
+## Langauges Supported
+1. English
+2. Hindi
