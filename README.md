@@ -1,31 +1,27 @@
 # Battery-Level--Android-App
-An Android App to view battery Level of Phone for Visually impared people
+## Short Description
+An Android App to View Battery Level of Phone for people with visual impairment and senior citizens.
+This app aims to make it easier to view the phone/tablet’s battery %  and charging status in Large Font, Bold Text and Speech.
+This is an Open Source Project developed specially for users with visual Impairments in mind. 
+## Long Description
+People with visual impairments or blindness(Visually Impaired (VI) Community) usually find it difficult to read the status bar information on the Android phone. The status bar shows vital information with the most important being the time and battery percentage. There are many widgets available as part of the android Operating System which show the time in both analog and digital formats and in large fonts. However, there are very few options when it comes to viewing the battery percentage of the phone. This makes it hard for people from the VI community to know the phone’s battery percentage whenever they desire. 
 
-This is an Open Source Project developed specially for users with **visual Impairments** in mind. The App supports Text to Speech by which the user can hear the batter %  and the status of phone (if**plugged in and charging**  or not)read out loud.
+The battery is the most important element in any smart phone and it is usually important to monitor how much charge is left on your phone at any point in time. For example, if you have 20 percent of battery left and you are still a few hours away from home or any power source, you may want to save the battery and keep your phone alive till you can charge it next.
 
-This app aims to make it easier to view the phone/table's battery % for people with visual impairments. the app achieves this by showing the Phone's Battery % in **Large Font**, **Bold Text** and **Speech**.
+Currently people with visual impairments rely on the phone’s low battery system notification (Usually when the phone reaches 15%) and by then it is often too late to act. This app aims to show the battery percentage in large font and also announce the same using the device’s speaker.
 
+Also, only few smartphones have a sound or vibration notification when the phone starts charging and it is difficult for people with visual impairment to confirm whether the phone is charging or not.  This app also shows the charging status (Charging/Not charging).  
+
+Keep it simple 
+The app has been specifically designed to only show the battery percentage and charging status  and does not provide any optimisation features. The aim is to keep it simple and easy to use and to display the most crucial information to the VI users without bombarding the users with a lot of information. The VI community and senior citizens can benefit from the app.
+Accessibility 
+The app has been tested with Talkback -Android's Screen Reader. The App also complies with the AAA Web Accessibility Standards for Digital Content. The app supports dark mode for people with light sensitivity and for using the app in low light situations.
 ## Features
-- Shows the Battery Level in Large Font, Bold Font and Speach
+- It is an open source project.
+- Shows the Battery Level in Large Font, Bold Font 
+- Speaks out the battery percentage on click of a button
 - Shows the Charging Status in large Font
 - Adapts for various screen sizes
 - Adapts for Landscape and Portrait orientations
-- Added Text to Speech Support
-- Accessible with **Talk Back** and other Screen Readers on Android
 - Supports Dark Mode
-
-## Accessibility
-The app ahs been tested with **Talkback** -Android's Screen Reader. The App also complies with the **AAA Web Accessibility Standerds** for Digital Content Accessibility.
-## Languages Supported
-- English
-- Hindi
-## Screenshots
-<img src="images/Charging Dark.jpeg" alt="Charging Dark">
-
-<img src="images/Charging Light.jpeg" alt="Charging Light">
-
-<img src="images/Charging Dark Land.jpeg" alt="Charging Dark Landscape">
-
-## Videos
-https://user-images.githubusercontent.com/88669630/152515309-a7268762-96ca-4098-bf30-cbf1a30d5261.mp4
-
+- Accessible with Talk Back and other Screen Readers on Android
