@@ -36,3 +36,4 @@ The app can be found at
 ### Google Play Store
 <a href='https://play.google.com/store/apps/details?id=com.varunmanojkumar.batterylevel&pcampaignid=pcampaignidMKT-Other-global-all-co-prtnr-py-PartBadge-Mar2515-1'><img alt='Get it on Google Play' src='https://play.google.com/intl/en_us/badges/static/images/badges/en_badge_web_generic.png'/></a>
 ### Amazon App Store
+[![amazon-appstore-badge-english-black](https://user-images.githubusercontent.com/88669630/156795259-a23208e9-b3a4-401c-bde0-0df46492d6a1.png)](https://www.amazon.com/gp/product/B09SCJ84Z6)
