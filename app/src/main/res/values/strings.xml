@@ -6,4 +6,10 @@
     <string name="Charging">Charging</string>
     <string name="BatteryLevel">\Battery Level  \n \</string>
     <string name="FullyCharged">Fully Charged</string>
+
+    <!--    menu File-->
+    <string name="AppTheme">App Theme</string>
+    <string name="Light">Light</string>
+    <string name="Dark">Dark</string>
+    <string name="System">System Default</string>
 </resources>

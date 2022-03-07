@@ -7,4 +7,11 @@
     <string name="Charging">चार्ज</string>
     <string name="BatteryLevel">\बैटरी का स्तर  \n \</string>
     <string name="FullyCharged">पूर्णतःउर्जित</string>
+
+
+    <!--    menu File-->
+    <string name="AppTheme">ऐप थीम</string>
+    <string name="Light">रोशनी</string>
+    <string name="Dark">अंधेरा</string>
+    <string name="System">प्रणालीगत चूक</string>
 </resources>
