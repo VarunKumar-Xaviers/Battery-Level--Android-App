@@ -9,8 +9,8 @@ android {
         applicationId "com.varunmanojkumar.batterylevel"
         minSdk 22
         targetSdk 31
-        versionCode 3
-        versionName "3.3"
+        versionCode 4
+        versionName "4.1"
 
         testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
     }

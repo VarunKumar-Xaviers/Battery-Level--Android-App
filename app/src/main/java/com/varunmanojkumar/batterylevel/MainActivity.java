@@ -11,11 +11,16 @@ import android.os.VibrationEffect;
 import android.os.Vibrator;
 import android.speech.tts.TextToSpeech;
 import android.util.Log;
+import android.view.Menu;
+import android.view.MenuInflater;
+import android.view.MenuItem;
 import android.widget.Button;
 import android.widget.ProgressBar;
 import android.widget.TextView;
 
+import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.appcompat.app.AppCompatDelegate;
 import androidx.constraintlayout.widget.ConstraintLayout;
 
 import java.util.Locale;
@@ -200,5 +205,39 @@ MainActivity extends AppCompatActivity {
                 ChangeStatusText.setText(R.string.NotCharging);
             }
         }
+    }
+
+//    Menu File
+
+    @Override
+    public boolean onCreateOptionsMenu(Menu menu) {
+        MenuInflater inflater = getMenuInflater();
+        inflater.inflate(R.menu.mainmenu, menu);
+        return super.onCreateOptionsMenu(menu);
+    }
+
+    @Override
+    public boolean onOptionsItemSelected(@NonNull MenuItem item) {
+
+        String Readoptionsout = item.getTitle().toString();
+        mTTS.speak(Readoptionsout, TextToSpeech.QUEUE_FLUSH, null, null);
+
+        switch (item.getItemId()) {
+            case R.id.Light:
+                Vibrate();
+//                switch to Light Mode
+                AppCompatDelegate.setDefaultNightMode(AppCompatDelegate.MODE_NIGHT_NO);
+                break;
+            case R.id.Dark:
+                Vibrate();
+//                switch to Light Dark
+                AppCompatDelegate.setDefaultNightMode(AppCompatDelegate.MODE_NIGHT_YES);
+                break;
+            case R.id.System:
+                Vibrate();
+                AppCompatDelegate.setDefaultNightMode(AppCompatDelegate.MODE_NIGHT_FOLLOW_SYSTEM);
+                break;
+        }
+        return super.onOptionsItemSelected(item);
     }
 }
