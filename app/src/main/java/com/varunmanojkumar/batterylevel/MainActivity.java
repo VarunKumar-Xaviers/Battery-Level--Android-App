@@ -209,12 +209,10 @@ MainActivity extends AppCompatActivity {
 
     public void openTTSSettings() {
         //Open Android Text-To-Speech Settings
-
         Intent intent = new Intent();
         intent.setAction("com.android.settings.TTS_SETTINGS");
         intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
         startActivity(intent);
-
     }
 
     //    Menu File
