@@ -12,7 +12,8 @@
         android:theme="@style/Theme.BatteryLevel">
         <activity
             android:name="com.varunmanojkumar.batterylevel.MainActivity"
-            android:exported="true">
+            android:exported="true"
+            android:immersive="true">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 

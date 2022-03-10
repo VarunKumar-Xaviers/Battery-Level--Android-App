@@ -123,7 +123,6 @@ MainActivity extends AppCompatActivity {
     protected void onPause() {
         super.onPause();
         mTTS.stop();
-        unregisterReceiver(mBatInfoReceiver);
     }
 
     public  void CreateTTS(){
@@ -176,6 +175,7 @@ MainActivity extends AppCompatActivity {
         CheckChargeIntentFilter.addAction(Intent.ACTION_POWER_DISCONNECTED);
         registerReceiver(mBatInfoReceiver, CheckChargeIntentFilter);
     }
+
 
     @Override
     protected void onStop() {
