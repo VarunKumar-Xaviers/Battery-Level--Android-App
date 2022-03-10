@@ -3,6 +3,11 @@
   <component name="DesignSurface">
     <option name="filePathToZoomLevelMap">
       <map>
+        <entry key="..\:/Users/varun/AndroidStudioProjects/Battery-Level--Android-App/app/src/main/res/drawable/batteryfull_foreground.xml" value="0.121" />
+        <entry key="..\:/Users/varun/AndroidStudioProjects/Battery-Level--Android-App/app/src/main/res/drawable/darkmode.xml" value="0.121" />
+        <entry key="..\:/Users/varun/AndroidStudioProjects/Battery-Level--Android-App/app/src/main/res/drawable/lightmode.xml" value="0.121" />
+        <entry key="..\:/Users/varun/AndroidStudioProjects/Battery-Level--Android-App/app/src/main/res/drawable/notcharging.xml" value="0.121" />
+        <entry key="..\:/Users/varun/AndroidStudioProjects/Battery-Level--Android-App/app/src/main/res/drawable/system.xml" value="0.121" />
         <entry key="..\:/Users/varun/AndroidStudioProjects/Battery-Level--Android-App/app/src/main/res/layout-land/activity_main.xml" value="0.25" />
         <entry key="..\:/Users/varun/AndroidStudioProjects/Battery-Level--Android-App/app/src/main/res/layout-sw600dp/activity_main.xml" value="0.11" />
         <entry key="..\:/Users/varun/AndroidStudioProjects/Battery-Level--Android-App/app/src/main/res/layout/activity_main.xml" value="0.25" />
