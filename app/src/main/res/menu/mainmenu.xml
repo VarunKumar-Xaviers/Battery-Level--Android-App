@@ -25,4 +25,10 @@
                 app:showAsAction="never" />
         </menu>
     </item>
+    <item
+        android:id="@+id/tts"
+        android:contentDescription="@string/TTSExpanded"
+        android:icon="@drawable/tts"
+        android:title="@string/TTS"
+        app:showAsAction="ifRoom" />
 </menu>

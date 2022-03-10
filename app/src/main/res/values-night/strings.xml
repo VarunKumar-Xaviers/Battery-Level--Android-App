@@ -8,4 +8,5 @@
     <string name="Charging">Charging</string>
     <string name="BatteryLevel">\Battery Level  \n \</string>
     <string name="FullyCharged">Fully Charged</string>oogle
+    <string name="TTS">Text to Speech Settings</string>
 </resources>

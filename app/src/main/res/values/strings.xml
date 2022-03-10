@@ -12,4 +12,6 @@
     <string name="Light">Light</string>
     <string name="Dark">Dark</string>
     <string name="System">System Default</string>
+    <string name="TTS">Text to Speech Settings</string>
+    <string name="TTSExpanded">Opeen the Text to Speech Settings</string>
 </resources>

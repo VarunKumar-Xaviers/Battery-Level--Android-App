@@ -14,4 +14,6 @@
     <string name="Light">रोशनी</string>
     <string name="Dark">अंधेरा</string>
     <string name="System">प्रणालीगत चूक</string>
+    <string name="TTS">टेक्स्ट टू स्पीच सेटिंग्स</string>
+    <string name="TTSExpanded">टेक्स्ट टू स्पीच सेटिंग खोलें</string>
 </resources>

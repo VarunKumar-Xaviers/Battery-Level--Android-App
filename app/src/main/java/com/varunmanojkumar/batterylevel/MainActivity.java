@@ -207,7 +207,17 @@ MainActivity extends AppCompatActivity {
         }
     }
 
-//    Menu File
+    public void openTTSSettings() {
+        //Open Android Text-To-Speech Settings
+
+        Intent intent = new Intent();
+        intent.setAction("com.android.settings.TTS_SETTINGS");
+        intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
+        startActivity(intent);
+
+    }
+
+    //    Menu File
 
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
@@ -237,6 +247,9 @@ MainActivity extends AppCompatActivity {
                 Vibrate();
                 AppCompatDelegate.setDefaultNightMode(AppCompatDelegate.MODE_NIGHT_FOLLOW_SYSTEM);
                 break;
+            case R.id.tts:
+                Vibrate();
+                openTTSSettings();
         }
         return super.onOptionsItemSelected(item);
     }
