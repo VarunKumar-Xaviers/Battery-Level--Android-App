@@ -9,10 +9,10 @@
 
     <TextView
         android:id="@+id/textView"
-        android:layout_width="1344dp"
-        android:layout_height="156dp"
+        android:layout_width="0dp"
+        android:layout_height="174dp"
         android:layout_margin="20dp"
-        android:layout_marginTop="96dp"
+        android:layout_marginTop="44dp"
         android:textAlignment="center"
         android:textSize="30sp"
         android:textStyle="bold"
@@ -20,7 +20,7 @@
         app:autoSizeMinTextSize="12sp"
         app:autoSizeTextType="uniform"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.625"
+        app:layout_constraintHorizontal_bias="0.226"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 
