@@ -72,7 +72,7 @@ MainActivity extends AppCompatActivity {
             }
 
             //Get battery % value
-            ReadText = tv.getText().toString() + " Phone is " + ChangeStatusText.getText().toString();
+            ReadText = tv.getText().toString() + " Device is " + ChangeStatusText.getText().toString();
 
 
 //            Check if Charging or not when phone is plugged in or removed
@@ -88,7 +88,7 @@ MainActivity extends AppCompatActivity {
                 ChangeStatusText.setText(R.string.NotCharging);
                 AnnouncePhoneConnected();
             }
-            PhoneConnected = "Phone is " + ChangeStatusText.getText().toString();
+            PhoneConnected = "Device is " + ChangeStatusText.getText().toString();
         }
     };
 
@@ -105,7 +105,7 @@ MainActivity extends AppCompatActivity {
 
         ChangeStatusText=findViewById(R.id.chargestatustext);
 
-        changeBatteryCharging();
+
     }
     @Override
     protected void onDestroy() {
@@ -250,5 +250,11 @@ MainActivity extends AppCompatActivity {
                 openTTSSettings();
         }
         return super.onOptionsItemSelected(item);
+    }
+
+    @Override
+    protected void onResume() {
+        super.onResume();
+        changeBatteryCharging();
     }
 }
