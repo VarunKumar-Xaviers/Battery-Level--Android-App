@@ -3,6 +3,7 @@
     package="com.varunmanojkumar.batterylevel">
 
     <uses-permission android:name="android.permission.VIBRATE" />
+
     <application
         android:allowBackup="true"
         android:icon="@mipmap/batteryfull"
@@ -10,8 +11,13 @@
         android:roundIcon="@mipmap/batteryfull_round"
         android:supportsRtl="true"
         android:theme="@style/Theme.BatteryLevel">
+        <service
+            android:name=".batterycheck"
+            android:enabled="true"
+            android:exported="true"></service>
+
         <activity
-            android:name="com.varunmanojkumar.batterylevel.MainActivity"
+            android:name=".MainActivity"
             android:exported="true"
             android:hardwareAccelerated="true"
             android:immersive="true">
@@ -20,7 +26,6 @@
 
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
-
         </activity>
     </application>
 
