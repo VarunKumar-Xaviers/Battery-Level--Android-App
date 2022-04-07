@@ -109,12 +109,9 @@ MainActivity extends AppCompatActivity {
                 Intent.ACTION_BATTERY_CHANGED));
 
         speak = findViewById(R.id.speak);
-        speak.setOnClickListener(v -> SpeakBatteryLevel());
-
         ChangeStatusText=findViewById(R.id.chargestatustext);
-
-
     }
+
 
     public  void CreateTTS(){
         mTTS = new TextToSpeech(this, status -> {
@@ -241,6 +238,14 @@ MainActivity extends AppCompatActivity {
     }
 
     @Override
+    protected void onResume() {
+        super.onResume();
+        changeBatteryCharging();
+        speak.setOnClickListener(v -> SpeakBatteryLevel());
+
+    }
+
+    @Override
     protected void onStop() {
         super.onStop();
         ReleaseTTS();
@@ -257,7 +262,16 @@ MainActivity extends AppCompatActivity {
     protected void onDestroy() {
         super.onDestroy();
         ReleaseTTS();
-        unregisterReceiver(mBatInfoReceiver);
     }
 
+    protected void onSaveInstanceState(@NonNull Bundle outState) {
+        super.onSaveInstanceState(outState);
+        outState.putString("chargetext", ChangeStatusText.getText().toString());
+    }
+
+    @Override
+    protected void onRestoreInstanceState(@NonNull Bundle savedInstanceState) {
+        super.onRestoreInstanceState(savedInstanceState);
+        ChangeStatusText.setText(savedInstanceState.getString("chargetext"));
+    }
 }
