@@ -74,8 +74,7 @@ MainActivity extends AppCompatActivity {
             //Get battery % value
             ReadText = tv.getText().toString() + " Device is " + ChangeStatusText.getText().toString();
 
-
-//            Check if Charging or not when phone is plugged in or removed
+            //Check if Charging or not when phone is plugged in or removed
             CheckChargeStatus();
 
             if (i.getAction().equals(Intent.ACTION_POWER_CONNECTED)){
@@ -104,25 +103,6 @@ MainActivity extends AppCompatActivity {
         speak.setOnClickListener(v -> SpeakBatteryLevel());
 
         ChangeStatusText=findViewById(R.id.chargestatustext);
-
-
-    }
-    @Override
-    protected void onDestroy() {
-        super.onDestroy();
-        ReleaseTTS();
-    }
-
-    @Override
-    protected void onStart() {
-        super.onStart();
-        CreateTTS();
-    }
-
-    @Override
-    protected void onPause() {
-        super.onPause();
-        mTTS.stop();
     }
 
     public  void CreateTTS(){
@@ -174,13 +154,6 @@ MainActivity extends AppCompatActivity {
         CheckChargeIntentFilter.addAction(Intent.ACTION_POWER_CONNECTED);
         CheckChargeIntentFilter.addAction(Intent.ACTION_POWER_DISCONNECTED);
         registerReceiver(mBatInfoReceiver, CheckChargeIntentFilter);
-    }
-
-
-    @Override
-    protected void onStop() {
-        super.onStop();
-        ReleaseTTS();
     }
 
     public void AnnouncePhoneConnected() {
@@ -253,8 +226,33 @@ MainActivity extends AppCompatActivity {
     }
 
     @Override
+    protected void onStart() {
+        super.onStart();
+        CreateTTS();
+    }
+
+    @Override
+    protected void onStop() {
+        super.onStop();
+        ReleaseTTS();
+    }
+
+    @Override
+    protected void onPause() {
+        super.onPause();
+        mTTS.stop();
+    }
+
+    @Override
     protected void onResume() {
         super.onResume();
         changeBatteryCharging();
     }
+
+    @Override
+    protected void onDestroy() {
+        super.onDestroy();
+        ReleaseTTS();
+    }
+
 }

@@ -16,4 +16,8 @@
     <string name="System">प्रणालीगत चूक</string>
     <string name="TTS">टेक्स्ट टू स्पीच सेटिंग्स</string>
     <string name="TTSExpanded">टेक्स्ट टू स्पीच सेटिंग खोलें</string>
+
+    <!--    Power Connected Announcement-->
+    <string name="PowerConnected">Power Connected</string>
+    <string name="PowerDisconnected">Power Disconnected </string>
 </resources>
