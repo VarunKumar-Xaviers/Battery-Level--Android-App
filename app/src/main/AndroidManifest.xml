@@ -11,10 +11,6 @@
         android:roundIcon="@mipmap/batteryfull_round"
         android:supportsRtl="true"
         android:theme="@style/Theme.BatteryLevel">
-        <service
-            android:name=".batterycheck"
-            android:enabled="true"
-            android:exported="true"></service>
 
         <activity
             android:name=".MainActivity"
