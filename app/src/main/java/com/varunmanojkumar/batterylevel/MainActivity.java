@@ -27,11 +27,12 @@ import java.util.Locale;
 
 public class
 MainActivity extends AppCompatActivity {
-    String ReadText;
+    String ReadBatteryPercent;
     TextToSpeech mTTS;
     Button speak;
     TextToSpeech AnnouncePhoneConnected;
     String PhoneConnected;
+    String PowerDisconnected;
 
     TextView ChangeStatusText;
     //Create Broadcast Receiver Object along with class definition
@@ -72,22 +73,30 @@ MainActivity extends AppCompatActivity {
             }
 
             //Get battery % value
-            ReadText = tv.getText().toString() + " Device is " + ChangeStatusText.getText().toString();
+            ReadBatteryPercent = tv.getText().toString();
 
             //Check if Charging or not when phone is plugged in or removed
             CheckChargeStatus();
 
-            if (i.getAction().equals(Intent.ACTION_POWER_CONNECTED)){
+            BatteryManager bm = (BatteryManager) getSystemService(BATTERY_SERVICE);
+            int batLevel = bm.getIntProperty(BatteryManager.BATTERY_PROPERTY_CAPACITY);
+            PhoneConnected = getText(R.string.PowerConnected).toString();
+            PowerDisconnected = getText(R.string.PowerDisconnected).toString();
+
+            if (i.getAction().equals(Intent.ACTION_POWER_CONNECTED)) {
                 Vibrate();
                 ChangeStatusText.setText(R.string.Charging);
                 AnnouncePhoneConnected();
-            }
-            else if (i.getAction().equals(Intent.ACTION_POWER_DISCONNECTED)){
+                mTTS.setSpeechRate(0.97f);
+                mTTS.speak("Battery Level" + batLevel + " %", TextToSpeech.QUEUE_FLUSH, null, null);
+            } else if (i.getAction().equals(Intent.ACTION_POWER_DISCONNECTED)) {
                 Vibrate();
-                ChangeStatusText.setText(R.string.NotCharging);
-                AnnouncePhoneConnected();
+                ChangeStatusText.setText(" ");
+                mTTS.setSpeechRate(0.97f);
+                mTTS.speak("Battery Level" + batLevel + " %", TextToSpeech.QUEUE_FLUSH, null, null);
+                AnnouncePhoneConnected.speak(PowerDisconnected, TextToSpeech.QUEUE_FLUSH, null, null);
             }
-            PhoneConnected = "Device is " + ChangeStatusText.getText().toString();
+
         }
     };
 
@@ -103,6 +112,8 @@ MainActivity extends AppCompatActivity {
         speak.setOnClickListener(v -> SpeakBatteryLevel());
 
         ChangeStatusText=findViewById(R.id.chargestatustext);
+
+
     }
 
     public  void CreateTTS(){
@@ -132,7 +143,7 @@ MainActivity extends AppCompatActivity {
             }
 //                    Speak button click
             mTTS.setSpeechRate(0.97f);
-            mTTS.speak(ReadText, TextToSpeech.QUEUE_FLUSH, null, null);
+            mTTS.speak(ReadBatteryPercent, TextToSpeech.QUEUE_FLUSH, null, null);
 
         });
     }
@@ -161,10 +172,8 @@ MainActivity extends AppCompatActivity {
             if (status == TextToSpeech.SUCCESS) {
                 AnnouncePhoneConnected.setLanguage(Locale.ENGLISH);
             }
-//                    Speak button click
             AnnouncePhoneConnected.setSpeechRate(0.97f);
             AnnouncePhoneConnected.speak(PhoneConnected, TextToSpeech.QUEUE_FLUSH, null, null);
-
         });
     }
 
@@ -175,7 +184,7 @@ MainActivity extends AppCompatActivity {
             if (ba.isCharging()) {
                 ChangeStatusText.setText(R.string.Charging);
             } else if (!ba.isCharging()) {
-                ChangeStatusText.setText(R.string.NotCharging);
+                ChangeStatusText.setText(" ");
             }
         }
     }
@@ -243,16 +252,12 @@ MainActivity extends AppCompatActivity {
         mTTS.stop();
     }
 
-    @Override
-    protected void onResume() {
-        super.onResume();
-        changeBatteryCharging();
-    }
 
     @Override
     protected void onDestroy() {
         super.onDestroy();
         ReleaseTTS();
+        unregisterReceiver(mBatInfoReceiver);
     }
 
 }
