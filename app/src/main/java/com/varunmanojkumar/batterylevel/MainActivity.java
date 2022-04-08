@@ -72,7 +72,7 @@ MainActivity extends AppCompatActivity {
             }
 
             //Get battery % value
-            ReadText = tv.getText().toString() + " Device is " + ChangeStatusText.getText().toString();
+            ReadText = tv.getText().toString() + " Device  " + ChangeStatusText.getText().toString();
 
             //Check if Charging or not when phone is plugged in or removed
             CheckChargeStatus();
@@ -92,7 +92,7 @@ MainActivity extends AppCompatActivity {
                 mTTS.setSpeechRate(0.97f);
                 mTTS.speak("Battery Level " + batLevel + " %", TextToSpeech.QUEUE_FLUSH, null, null);
             }
-            PhoneConnected = "Device is " + ChangeStatusText.getText().toString();
+            PhoneConnected = "Device  " + ChangeStatusText.getText().toString();
         }
     };
 
