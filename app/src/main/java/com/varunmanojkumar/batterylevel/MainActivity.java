@@ -125,10 +125,7 @@ MainActivity extends AppCompatActivity {
             }
         });
     }
-    public void ReleaseTTS(){
-        mTTS.stop();
-        mTTS.shutdown();
-    }
+
 
     public void SpeakBatteryLevel(){
         mTTS = new TextToSpeech(this, status -> {
@@ -236,16 +233,12 @@ MainActivity extends AppCompatActivity {
         CreateTTS();
     }
 
-    @Override
-    protected void onStop() {
-        super.onStop();
-        ReleaseTTS();
-    }
 
     @Override
     protected void onPause() {
         super.onPause();
         mTTS.stop();
+        AnnouncePhoneConnected.stop();
     }
 
     @Override
@@ -253,11 +246,4 @@ MainActivity extends AppCompatActivity {
         super.onResume();
         changeBatteryCharging();
     }
-
-    @Override
-    protected void onDestroy() {
-        super.onDestroy();
-        ReleaseTTS();
-    }
-
 }
