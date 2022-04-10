@@ -103,15 +103,14 @@ MainActivity extends AppCompatActivity {
         speak = findViewById(R.id.speak);
         speak.setOnClickListener(v -> SpeakBatteryLevel());
 
-        ChangeStatusText=findViewById(R.id.chargestatustext);
+        ChangeStatusText = findViewById(R.id.chargestatustext);
 
+        if (savedInstanceState != null) {
+            String Restorevalue = savedInstanceState.getString("ChargeStatus");
+            ChangeStatusText.setText(Restorevalue);
+        }
+    }
 
-    }
-    @Override
-    protected void onDestroy() {
-        super.onDestroy();
-        ReleaseTTS();
-    }
 
     @Override
     protected void onStart() {
@@ -197,17 +196,17 @@ MainActivity extends AppCompatActivity {
         });
     }
 
-    public void changeBatteryCharging() {
-        BatteryManager ba = (BatteryManager) getSystemService(BATTERY_SERVICE);
-
-        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.M) {
-            if (ba.isCharging()) {
-                ChangeStatusText.setText(R.string.Charging);
-            } else if (!ba.isCharging()) {
-                ChangeStatusText.setText(R.string.NotCharging);
-            }
-        }
-    }
+//    public void changeBatteryCharging() {
+//        BatteryManager ba = (BatteryManager) getSystemService(BATTERY_SERVICE);
+//
+//        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.M) {
+//            if (ba.isCharging()) {
+//                ChangeStatusText.setText(R.string.Charging);
+//            } else if (!ba.isCharging()) {
+//                ChangeStatusText.setText(R.string.NotCharging);
+//            }
+//        }
+//    }
 
     public void openTTSSettings() {
         //Open Android Text-To-Speech Settings
@@ -255,8 +254,20 @@ MainActivity extends AppCompatActivity {
     }
 
     @Override
-    protected void onResume() {
-        super.onResume();
-        changeBatteryCharging();
+    protected void onDestroy() {
+        super.onDestroy();
+        ReleaseTTS();
     }
+
+    //    @Override
+//    protected void onResume() {
+//        super.onResume();
+//        changeBatteryCharging();
+//    }
+    //    Save the value of charging and not charging in bundle
+    protected void onSaveInstanceState(@NonNull Bundle OutState) {
+        super.onSaveInstanceState(OutState);
+        OutState.putString("ChargeStatus", ChangeStatusText.getText().toString());
+    }
+
 }
