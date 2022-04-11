@@ -72,7 +72,7 @@ MainActivity extends AppCompatActivity {
             }
 
             //Get battery % value
-            ReadText = tv.getText().toString() + " Device is " + ChangeStatusText.getText().toString();
+            ReadText = tv.getText().toString();
 
 
 //            Check if Charging or not when phone is plugged in or removed
