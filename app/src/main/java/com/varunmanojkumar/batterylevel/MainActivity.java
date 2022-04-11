@@ -29,6 +29,7 @@ import java.util.Locale;
 
 public class
 MainActivity extends AppCompatActivity {
+    TextToSpeech mTTS = null;
     //Create Broadcast Receiver Object along with class definition
     private final BroadcastReceiver mBatInfoReceiver = new BroadcastReceiver() {
 
@@ -73,8 +74,6 @@ MainActivity extends AppCompatActivity {
 //            Check if Charging or not when phone is plugged in or removed
             CheckChargeStatus();
             try {
-
-
                 if (i.getAction().equals(Intent.ACTION_POWER_CONNECTED)) {
                     Vibrate();
                     ChangeStatusText.setText(R.string.Charging);
@@ -91,7 +90,7 @@ MainActivity extends AppCompatActivity {
         }
     };
     String ReadText;
-    TextToSpeech mTTS;
+
     Button speak;
     TextToSpeech AnnouncePhoneConnected;
     String PhoneConnected;
