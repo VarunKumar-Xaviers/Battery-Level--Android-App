@@ -1,0 +1,39 @@
+{
+  "project_info": {
+    "project_number": "644690180728",
+    "project_id": "battery-percent-level",
+    "storage_bucket": "battery-percent-level.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:644690180728:android:8c8dea01a8791e23718b8d",
+        "android_client_info": {
+          "package_name": "com.varunmanojkumar.batterylevel"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "644690180728-o0l45da8a0acqglh9p629s9of5mmst2d.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyAlwVT27rNkyZMKgsKMxq9QEqNFvTVTJVs"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "644690180728-o0l45da8a0acqglh9p629s9of5mmst2d.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

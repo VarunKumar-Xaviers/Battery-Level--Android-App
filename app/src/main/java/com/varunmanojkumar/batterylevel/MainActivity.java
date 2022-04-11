@@ -23,17 +23,12 @@ import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.app.AppCompatDelegate;
 import androidx.constraintlayout.widget.ConstraintLayout;
 
+import com.google.firebase.analytics.FirebaseAnalytics;
+
 import java.util.Locale;
 
 public class
 MainActivity extends AppCompatActivity {
-    String ReadText;
-    TextToSpeech mTTS;
-    Button speak;
-    TextToSpeech AnnouncePhoneConnected;
-    String PhoneConnected;
-
-    TextView ChangeStatusText;
     //Create Broadcast Receiver Object along with class definition
     private final BroadcastReceiver mBatInfoReceiver = new BroadcastReceiver() {
 
@@ -77,24 +72,40 @@ MainActivity extends AppCompatActivity {
 
 //            Check if Charging or not when phone is plugged in or removed
             CheckChargeStatus();
+            try {
 
-            if (i.getAction().equals(Intent.ACTION_POWER_CONNECTED)){
-                Vibrate();
-                ChangeStatusText.setText(R.string.Charging);
-                AnnouncePhoneConnected();
+
+                if (i.getAction().equals(Intent.ACTION_POWER_CONNECTED)) {
+                    Vibrate();
+                    ChangeStatusText.setText(R.string.Charging);
+                    AnnouncePhoneConnected();
+                } else if (i.getAction().equals(Intent.ACTION_POWER_DISCONNECTED)) {
+                    Vibrate();
+                    ChangeStatusText.setText(R.string.NotCharging);
+                    AnnouncePhoneConnected();
+                }
+                PhoneConnected = "Device " + ChangeStatusText.getText().toString();
+            } catch (Exception e) {
+                e.printStackTrace();
             }
-            else if (i.getAction().equals(Intent.ACTION_POWER_DISCONNECTED)){
-                Vibrate();
-                ChangeStatusText.setText(R.string.NotCharging);
-                AnnouncePhoneConnected();
-            }
-            PhoneConnected = "Device " + ChangeStatusText.getText().toString();
         }
     };
+    String ReadText;
+    TextToSpeech mTTS;
+    Button speak;
+    TextToSpeech AnnouncePhoneConnected;
+    String PhoneConnected;
+
+    TextView ChangeStatusText;
+    private FirebaseAnalytics mFirebaseAnalytics;
 
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
+
+        //Firebase Analytics
+        mFirebaseAnalytics = FirebaseAnalytics.getInstance(this);
+
         //Register the receiver which triggers event
         //when battery charge is changed
         registerReceiver(mBatInfoReceiver, new IntentFilter(
@@ -105,6 +116,7 @@ MainActivity extends AppCompatActivity {
 
         ChangeStatusText = findViewById(R.id.chargestatustext);
 
+//        Restore values on device rotation
         if (savedInstanceState != null) {
             String Restorevalue = savedInstanceState.getString("ChargeStatus");
             ChangeStatusText.setText(Restorevalue);
@@ -120,7 +132,14 @@ MainActivity extends AppCompatActivity {
     @Override
     protected void onPause() {
         super.onPause();
-        mTTS.stop();
+        try {
+            if (mTTS != null) {
+                mTTS.stop();
+            }
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+
     }
 
     public  void CreateTTS(){
@@ -138,12 +157,19 @@ MainActivity extends AppCompatActivity {
             }
         });
     }
-    public void ReleaseTTS(){
-        mTTS.stop();
-        mTTS.shutdown();
+
+    public void ReleaseTTS() {
+        try {
+            if (mTTS != null) {
+                mTTS.stop();
+                mTTS.shutdown();
+            }
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
     }
 
-    public void SpeakBatteryLevel(){
+    public void SpeakBatteryLevel() {
         mTTS = new TextToSpeech(this, status -> {
             if (status == TextToSpeech.SUCCESS) {
                 mTTS.setLanguage(Locale.ENGLISH);
@@ -195,17 +221,6 @@ MainActivity extends AppCompatActivity {
         });
     }
 
-//    public void changeBatteryCharging() {
-//        BatteryManager ba = (BatteryManager) getSystemService(BATTERY_SERVICE);
-//
-//        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.M) {
-//            if (ba.isCharging()) {
-//                ChangeStatusText.setText(R.string.Charging);
-//            } else if (!ba.isCharging()) {
-//                ChangeStatusText.setText(R.string.NotCharging);
-//            }
-//        }
-//    }
 
     public void openTTSSettings() {
         //Open Android Text-To-Speech Settings
@@ -258,11 +273,6 @@ MainActivity extends AppCompatActivity {
         ReleaseTTS();
     }
 
-    //    @Override
-//    protected void onResume() {
-//        super.onResume();
-//        changeBatteryCharging();
-//    }
     //    Save the value of charging and not charging in bundle
     protected void onSaveInstanceState(@NonNull Bundle OutState) {
         super.onSaveInstanceState(OutState);
