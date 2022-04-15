@@ -14,6 +14,7 @@
     <string name="System">System Default</string>
     <string name="TTS">Text to Speech Settings</string>
     <string name="TTSExpanded">Opeen the Text to Speech Settings</string>
+    <string name="Refresh">Refresh</string>
 
     <!--    Power Connected Announcement-->
     <string name="PowerConnected">Power Connected</string>

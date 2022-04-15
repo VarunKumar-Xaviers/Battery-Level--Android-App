@@ -50,10 +50,7 @@ MainActivity extends AppCompatActivity {
             //Set TextView with text
 
             tv.setText(getString(R.string.BatteryLevel) + level + "%");
-            if (level == 100) {
-                rl.setBackgroundResource(R.color.Green);
-                ChangeStatusText.setText(R.string.FullyCharged);
-            } else if (level > 90 && level <= 100) {
+            if (level > 90 && level <= 100) {
                 rl.setBackgroundResource(R.color.Green);
 
             } else if (level > 50 && level <= 90) {
@@ -96,7 +93,13 @@ MainActivity extends AppCompatActivity {
     String PhoneConnected;
 
     TextView ChangeStatusText;
-    private FirebaseAnalytics mFirebaseAnalytics;
+    FirebaseAnalytics mFirebaseAnalytics;
+
+    public void Refresh() {
+        finish();
+        startActivity(getIntent());
+        overridePendingTransition(0, 0);
+    }
 
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -162,6 +165,8 @@ MainActivity extends AppCompatActivity {
             if (mTTS != null) {
                 mTTS.stop();
                 mTTS.shutdown();
+                AnnouncePhoneConnected.stop();
+                AnnouncePhoneConnected.shutdown();
             }
         } catch (Exception e) {
             e.printStackTrace();
@@ -214,8 +219,11 @@ MainActivity extends AppCompatActivity {
                 AnnouncePhoneConnected.setLanguage(Locale.ENGLISH);
             }
 //                    Speak button click
-            AnnouncePhoneConnected.setSpeechRate(0.97f);
-            AnnouncePhoneConnected.speak("Battery Level " + batLevel + " % " + PhoneConnected, TextToSpeech.QUEUE_FLUSH, null, null);
+            if (!AnnouncePhoneConnected.isSpeaking()) {
+                AnnouncePhoneConnected.setSpeechRate(0.97f);
+                AnnouncePhoneConnected.speak("Battery Level " + batLevel + " % " + PhoneConnected, TextToSpeech.QUEUE_FLUSH, null);
+            }
+
 
         });
     }
@@ -262,6 +270,8 @@ MainActivity extends AppCompatActivity {
             case R.id.tts:
                 Vibrate();
                 openTTSSettings();
+            case R.id.Refresh:
+                Refresh();
         }
         return super.onOptionsItemSelected(item);
     }

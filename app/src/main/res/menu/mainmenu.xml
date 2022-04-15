@@ -31,4 +31,10 @@
         android:icon="@drawable/tts"
         android:title="@string/TTS"
         app:showAsAction="ifRoom" />
+    <item
+        android:id="@+id/Refresh"
+        android:checkable="true"
+        android:icon="@drawable/refresh"
+        android:title="@string/Refresh"
+        app:showAsAction="ifRoom" />
 </menu>
