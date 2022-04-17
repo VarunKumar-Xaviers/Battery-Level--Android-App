@@ -34,7 +34,7 @@ The app can be found at
 2. Google Play Store
 3. Amazon App Store
 ### Direct Download
-[![Direct Download from Github](https://e7.pngegg.com/pngimages/914/758/png-clipart-computer-icons-logo-github-github-logo-logo-computer-program-thumbnail.png)](https://github.com/VarunKumar-Xaviers/Battery-Level--Android-App/releases/download/V4.8/app-release.apk)
+[![Direct Download from Github](https://github.githubassets.com/images/modules/logos_page/GitHub-Mark.png)](https://github.com/VarunKumar-Xaviers/Battery-Level--Android-App/releases/download/V4.8/app-release.apk)
 ### Google Play Store
 <a href='https://play.google.com/store/apps/details?id=com.varunmanojkumar.batterylevel&pcampaignid=pcampaignidMKT-Other-global-all-co-prtnr-py-PartBadge-Mar2515-1'><img alt='Get it on Google Play' src='https://play.google.com/intl/en_us/badges/static/images/badges/en_badge_web_generic.png'/></a>
 ### Amazon App Store
