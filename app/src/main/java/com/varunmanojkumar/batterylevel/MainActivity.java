@@ -270,8 +270,10 @@ MainActivity extends AppCompatActivity {
             case R.id.tts:
                 Vibrate();
                 openTTSSettings();
+                break;
             case R.id.Refresh:
                 Refresh();
+                break;
         }
         return super.onOptionsItemSelected(item);
     }

@@ -19,5 +19,6 @@
 
     <!--    Power Connected Announcement-->
     <string name="PowerConnected">Power Connected</string>
-    <string name="PowerDisconnected">Power Disconnected </string>
+    <string name="PowerDisconnected">Power Disconnected</string>
+    <string name="Refresh">Refresh</string>
 </resources>
